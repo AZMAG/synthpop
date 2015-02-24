@@ -28,8 +28,12 @@ def simple_draw(num, weights, index):
         Array of indexes drawn based on weights.
 
     """
-    p = weights / weights.sum()
-    return np.random.choice(index, size=num, p=p, replace=True)
+    w_sum = weights.sum()
+    if w_sum != 0:
+        p = weights / weights.sum()
+        return np.random.choice(index, size=num, p=p, replace=True)
+    else:
+        return np.random.choice(index, size=num)
 
 
 def _draw_indexes(num, fac, weights):
